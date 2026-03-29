@@ -438,19 +438,27 @@ TArray<FMCPToolInfo> FViewportService::GetAvailableTools() const
 	TArray<FMCPToolInfo> Tools;
 	
 	// set_location
-	{
-		FMCPToolInfo Tool;
-		Tool.Name = TEXT("set_location");
-		Tool.Description = TEXT("Set the viewport camera location.");
-		
-		TSharedPtr<FJsonObject> LocParam = MakeShared<FJsonObject>();
-		LocParam->SetStringField(TEXT("type"), TEXT("array"));
-		LocParam->SetStringField(TEXT("description"), TEXT("Camera location as [X, Y, Z]"));
-		Tool.Parameters->SetObjectField(TEXT("location"), LocParam);
-		Tool.RequiredParams.Add(TEXT("location"));
-		
-		Tools.Add(Tool);
-	}
+    {
+        FMCPToolInfo Tool;
+        Tool.Name = TEXT("set_location");
+        Tool.Description = TEXT("Set the viewport camera location.");
+        
+        TSharedPtr<FJsonObject> LocParam = MakeShared<FJsonObject>();
+        LocParam->SetStringField(TEXT("type"), TEXT("array"));
+        LocParam->SetStringField(TEXT("description"), TEXT("Camera location as [X, Y, Z]"));
+        
+        // --- ONOMI -> FIXING THE ARRAY TYPE MUST HAVe ITEMS PROBLEM ---
+        // Explicitly define that the array contains numbers
+        TSharedPtr<FJsonObject> ItemsParam = MakeShared<FJsonObject>();
+        ItemsParam->SetStringField(TEXT("type"), TEXT("number"));
+        LocParam->SetObjectField(TEXT("items"), ItemsParam);
+        // -----------------------
+
+        Tool.Parameters->SetObjectField(TEXT("location"), LocParam);
+        Tool.RequiredParams.Add(TEXT("location"));
+        
+        Tools.Add(Tool);
+    }
 	
 	// set_rotation
 	{
@@ -461,6 +469,9 @@ TArray<FMCPToolInfo> FViewportService::GetAvailableTools() const
 		TSharedPtr<FJsonObject> RotParam = MakeShared<FJsonObject>();
 		RotParam->SetStringField(TEXT("type"), TEXT("array"));
 		RotParam->SetStringField(TEXT("description"), TEXT("Camera rotation as [Pitch, Yaw, Roll]"));
+		TSharedPtr<FJsonObject> RotItems = MakeShared<FJsonObject>();
+		RotItems->SetStringField(TEXT("type"), TEXT("number"));
+		RotParam->SetObjectField(TEXT("items"), RotItems);
 		Tool.Parameters->SetObjectField(TEXT("rotation"), RotParam);
 		Tool.RequiredParams.Add(TEXT("rotation"));
 		

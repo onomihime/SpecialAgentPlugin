@@ -1018,17 +1018,20 @@ TArray<FMCPToolInfo> FWorldService::GetAvailableTools() const
 		TSharedPtr<FJsonObject> LocParam = MakeShared<FJsonObject>();
 		LocParam->SetStringField(TEXT("type"), TEXT("array"));
 		LocParam->SetStringField(TEXT("description"), TEXT("Spawn location as [X, Y, Z]"));
+		{ TSharedPtr<FJsonObject> Items = MakeShared<FJsonObject>(); Items->SetStringField(TEXT("type"), TEXT("number")); LocParam->SetObjectField(TEXT("items"), Items); }
 		Tool.Parameters->SetObjectField(TEXT("location"), LocParam);
 		Tool.RequiredParams.Add(TEXT("location"));
 		
 		TSharedPtr<FJsonObject> RotParam = MakeShared<FJsonObject>();
 		RotParam->SetStringField(TEXT("type"), TEXT("array"));
 		RotParam->SetStringField(TEXT("description"), TEXT("Optional rotation as [Pitch, Yaw, Roll] in degrees"));
+		{ TSharedPtr<FJsonObject> Items = MakeShared<FJsonObject>(); Items->SetStringField(TEXT("type"), TEXT("number")); RotParam->SetObjectField(TEXT("items"), Items); }
 		Tool.Parameters->SetObjectField(TEXT("rotation"), RotParam);
 		
 		TSharedPtr<FJsonObject> ScaleParam = MakeShared<FJsonObject>();
 		ScaleParam->SetStringField(TEXT("type"), TEXT("array"));
 		ScaleParam->SetStringField(TEXT("description"), TEXT("Optional scale as [X, Y, Z]"));
+		{ TSharedPtr<FJsonObject> Items = MakeShared<FJsonObject>(); Items->SetStringField(TEXT("type"), TEXT("number")); ScaleParam->SetObjectField(TEXT("items"), Items); }
 		Tool.Parameters->SetObjectField(TEXT("scale"), ScaleParam);
 		
 		Tools.Add(Tool);
@@ -1064,6 +1067,7 @@ TArray<FMCPToolInfo> FWorldService::GetAvailableTools() const
 		TSharedPtr<FJsonObject> LocParam = MakeShared<FJsonObject>();
 		LocParam->SetStringField(TEXT("type"), TEXT("array"));
 		LocParam->SetStringField(TEXT("description"), TEXT("New location as [X, Y, Z]"));
+		{ TSharedPtr<FJsonObject> Items = MakeShared<FJsonObject>(); Items->SetStringField(TEXT("type"), TEXT("number")); LocParam->SetObjectField(TEXT("items"), Items); }
 		Tool.Parameters->SetObjectField(TEXT("location"), LocParam);
 		Tool.RequiredParams.Add(TEXT("location"));
 		
@@ -1085,6 +1089,7 @@ TArray<FMCPToolInfo> FWorldService::GetAvailableTools() const
 		TSharedPtr<FJsonObject> RotParam = MakeShared<FJsonObject>();
 		RotParam->SetStringField(TEXT("type"), TEXT("array"));
 		RotParam->SetStringField(TEXT("description"), TEXT("New rotation as [Pitch, Yaw, Roll]"));
+		{ TSharedPtr<FJsonObject> Items = MakeShared<FJsonObject>(); Items->SetStringField(TEXT("type"), TEXT("number")); RotParam->SetObjectField(TEXT("items"), Items); }
 		Tool.Parameters->SetObjectField(TEXT("rotation"), RotParam);
 		Tool.RequiredParams.Add(TEXT("rotation"));
 		
@@ -1106,6 +1111,7 @@ TArray<FMCPToolInfo> FWorldService::GetAvailableTools() const
 		TSharedPtr<FJsonObject> ScaleParam = MakeShared<FJsonObject>();
 		ScaleParam->SetStringField(TEXT("type"), TEXT("array"));
 		ScaleParam->SetStringField(TEXT("description"), TEXT("New scale as [X, Y, Z]"));
+		{ TSharedPtr<FJsonObject> Items = MakeShared<FJsonObject>(); Items->SetStringField(TEXT("type"), TEXT("number")); ScaleParam->SetObjectField(TEXT("items"), Items); }
 		Tool.Parameters->SetObjectField(TEXT("scale"), ScaleParam);
 		Tool.RequiredParams.Add(TEXT("scale"));
 		
@@ -1127,6 +1133,7 @@ TArray<FMCPToolInfo> FWorldService::GetAvailableTools() const
 		TSharedPtr<FJsonObject> LocParam = MakeShared<FJsonObject>();
 		LocParam->SetStringField(TEXT("type"), TEXT("array"));
 		LocParam->SetStringField(TEXT("description"), TEXT("Optional new location for the duplicate"));
+		{ TSharedPtr<FJsonObject> Items = MakeShared<FJsonObject>(); Items->SetStringField(TEXT("type"), TEXT("number")); LocParam->SetObjectField(TEXT("items"), Items); }
 		Tool.Parameters->SetObjectField(TEXT("new_location"), LocParam);
 		
 		Tools.Add(Tool);
@@ -1141,6 +1148,7 @@ TArray<FMCPToolInfo> FWorldService::GetAvailableTools() const
 		TSharedPtr<FJsonObject> CenterParam = MakeShared<FJsonObject>();
 		CenterParam->SetStringField(TEXT("type"), TEXT("array"));
 		CenterParam->SetStringField(TEXT("description"), TEXT("Center point as [X, Y, Z]"));
+		{ TSharedPtr<FJsonObject> Items = MakeShared<FJsonObject>(); Items->SetStringField(TEXT("type"), TEXT("number")); CenterParam->SetObjectField(TEXT("items"), Items); }
 		Tool.Parameters->SetObjectField(TEXT("center"), CenterParam);
 		Tool.RequiredParams.Add(TEXT("center"));
 		

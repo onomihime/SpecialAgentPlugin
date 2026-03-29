@@ -756,6 +756,22 @@ TArray<FMCPToolInfo> FAssetService::GetAvailableTools() const
 		TSharedPtr<FJsonObject> FilterParam = MakeShared<FJsonObject>();
 		FilterParam->SetStringField(TEXT("type"), TEXT("object"));
 		FilterParam->SetStringField(TEXT("description"), TEXT("Optional filter object with 'class' (asset class name), 'path' (content path), and 'max_results' (limit)"));
+		{
+			TSharedPtr<FJsonObject> FilterProps = MakeShared<FJsonObject>();
+			TSharedPtr<FJsonObject> ClassProp = MakeShared<FJsonObject>();
+			ClassProp->SetStringField(TEXT("type"), TEXT("string"));
+			ClassProp->SetStringField(TEXT("description"), TEXT("Asset class name to filter by"));
+			FilterProps->SetObjectField(TEXT("class"), ClassProp);
+			TSharedPtr<FJsonObject> PathProp = MakeShared<FJsonObject>();
+			PathProp->SetStringField(TEXT("type"), TEXT("string"));
+			PathProp->SetStringField(TEXT("description"), TEXT("Content path to filter by"));
+			FilterProps->SetObjectField(TEXT("path"), PathProp);
+			TSharedPtr<FJsonObject> MaxProp = MakeShared<FJsonObject>();
+			MaxProp->SetStringField(TEXT("type"), TEXT("number"));
+			MaxProp->SetStringField(TEXT("description"), TEXT("Maximum number of results"));
+			FilterProps->SetObjectField(TEXT("max_results"), MaxProp);
+			FilterParam->SetObjectField(TEXT("properties"), FilterProps);
+		}
 		Tool.Parameters->SetObjectField(TEXT("filter"), FilterParam);
 		
 		Tools.Add(Tool);
