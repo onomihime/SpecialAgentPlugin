@@ -1,5 +1,7 @@
 # SpecialAgent
 
+## Notice from the princess: Added compatibility with VSCode and Github Copilot!! Enjoy <3
+
 **Connect AI to Unreal Engine 5**
 
 Full Python API access • 71+ level design tools • Visual feedback loop
